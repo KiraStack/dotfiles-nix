@@ -32,9 +32,9 @@ super + shift + {h,j,k,l}
 
 # Toggle state
 super + f
-  bspc node -t floating
+  bspc node -t ~floating
 super + g
-  bspc node -t fullscreen
+  bspc node -t ~fullscreen
 
 # Switch desktops
 super + {1-9}

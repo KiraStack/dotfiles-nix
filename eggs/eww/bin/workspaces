@@ -1,0 +1,39 @@
+#!/usr/bin/env bash
+
+# Check if a list contains an element
+contains() {
+    local list=($1)
+    local elem=$2
+    for e in "${list[@]}"; do
+        [[ "$e" == "$elem" ]] && return 0
+    done
+    return 1
+}
+
+# Write workspaces to stdout (via `yuck`)
+print_workspaces() {
+    # Loop through all desktops
+    local buf=""
+    for d in $(bspc query -D --names); do
+        if [[ "$d" == "$(bspc query -D -d focused --names)" ]]; then
+            class="focused"
+        elif contains "$(bspc query -D -d .occupied --names)" "$d"; then
+            class="occupied"
+        else
+            continue  # Skip empty workspaces
+        fi
+
+        # Append desktop button
+        buf+="(eventbox :cursor \"pointer\" (button :class \"$class\" :onclick \"bspc desktop -f $d\" \"$d\"))"
+    done
+
+    # Write desktop buttons
+    echo "(box :spacing 10 :orientation \"h\" :class \"works\" :halign \"center\" :space-evenly \"false\" $buf)"
+}
+
+print_workspaces
+
+# Subscribe to bspwm desktop changes
+bspc subscribe desktop node_transfer | while read -r _; do
+    print_workspaces &
+done

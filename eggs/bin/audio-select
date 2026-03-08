@@ -50,4 +50,4 @@ SINK_NAME=$(get_sink_name "${SINK_ID}")
 
 # Set the default sink
 pactl set-default-sink "${SINK_NAME}"
-echo "Sink ${SINK_NAME} set as default."
+echo "Sink \"${SINK_NAME}\" set as default."

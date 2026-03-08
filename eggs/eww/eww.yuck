@@ -7,8 +7,8 @@
   "date '+%H:%M %b %d, %Y'"
 )
 
-; Listeners
-(deflisten workspaces :initial "[]" "sh bin/get_workspaces")
+; Workspaces query (listener)
+(deflisten workspaces "bin/workspaces")
 
 ; Headers
 (include "bar/eww.yuck")

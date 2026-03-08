@@ -2,9 +2,6 @@
 (defwidget workspaces []
   (box
     :class "workspaces"
-    :orientation "h"
-    :space-evenly false
-    :valign "center"
     (literal :content "${workspaces}")
   )
 )
@@ -13,71 +10,62 @@
 (defwidget date []
   (box
     :class "date"
-    :orientation "h"
-    :space-evenly true
-    (literal :content "${time}")
-  )
-)
+    (literal :content "time")
+  ))
 
 ; Left section of the bar
 (defwidget left []
   (box
-    :class "bar-left"
+    :class "left"
     :orientation "h"
     :space-evenly false
     :halign "start"
-    ;(widget)
+    :valign "center"
+    ; (widget)
     ; (launcher)
-    ; (workspaces)
-    ;(windowtitle)
-  )
-)
+    (workspaces)
+  ))
 
 ; Centre section of the bar
 (defwidget center []
   (box
-    :class "bar-center"
+    :class "center"
     :orientation "h"
     :space-evenly false
     :halign "center"
+    :valign "center"
     (date)
-  )
-)
+    ; (window) ; window title
+  ))
 
 ; Right section of the bar
 (defwidget right []
   (box
-    :class "bar-right"
+    :class "right"
     :orientation "h"
     :space-evenly false
     :halign "end"
+    :valign "center"
     ; (tray)
     ; (update)
-  )
-)
+  ))
 
 ; Main bar widget
 (defwidget bar []
   (box
-    :class "bar"
-    :orientation "h"
-    :space-evenly true
-    ; (left)
+    (left)
     (center)
-    ; (right)
-  )
-)
+    (right)
+  ))
 
 ; Main bar window
-(defwindow bar
-  :monitor 0
+(defwindow bar :monitor 0
   :windowtype "dock"
   :geometry (geometry
     :x "0px"
-    :y "20px"
+    :y "8px"
     :width "98%"
-    :height "25px"
+    :height "40px"
   :anchor "top center")
-  :reserve (struts :distance "0px" :side "top")
-  (bar)
-)
+  :reserve (struts :distance "40px" :side "top")
+  (bar))

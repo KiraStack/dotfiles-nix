@@ -1,0 +1,28 @@
+#!/bin/sh
+set -e # automatic exit on errors
+
+# Pre-processor definitions
+THEME="Bibata-Modern-Ice"
+SIZE=24
+
+# Directories
+SCRIPT_DIR="$(cd "$(dirname "$0")" >/dev/null 2>&1 && pwd)"
+SRC_DIR="${SCRIPT_DIR}/../etc/icons"
+TARGET_DIR="${HOME}/.icons/${THEME}/cursors"
+CONFIG_FILE="${HOME}/.Xresources.d/cursors"
+
+# Ensure source exists
+if [ ! -d "${SRC_DIR}" ]; then
+    echo "Source directory '${SRC_DIR}' does not exist."
+    exit 1
+fi
+
+# Create target directory
+mkdir -p "${TARGET_DIR}"
+cp -a "${SRC_DIR}/." "${TARGET_DIR}/"
+
+# Write config
+mkdir -p "$(dirname "${CONFIG_FILE}")"
+printf "Xcursor.theme: %s\nXcursor.size: %s\n" "${THEME}" "${SIZE}" > "${CONFIG_FILE}"
+xrdb -merge "${CONFIG_FILE}"
+echo "Cursor theme '${THEME}' installed from '${SRC_DIR}' and applied."

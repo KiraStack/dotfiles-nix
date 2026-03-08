@@ -3,34 +3,33 @@
     background-color: $base0;
     color: $base5;
     font-family: 'JetBrainsMono Nerd Font Mono, monospace';
-    font-size: 12px;
-    padding: 2px 10px;
-    border-radius: 4px;
-    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3);
+    font-size: 1.2rem;
+    padding: 0.5rem 1rem;
+    border-radius: 12px;
+    /* box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3); */
 }
 
-/* Sections */
-.bar-left,
-.bar-center,
-.bar-right {
-}
+/* Sections
+.left, .center, .right {}
+*/
 
 /* Workspaces */
 .workspaces {
-    color: $base12; /* cyan for workspaces */
+    color: $base3;
     font-weight: bold;
-    margin-right: 10px;
-}
 
-/* Focused workspace */
-.workspaces span.focused {
-    color: $base8; /* red for focused */
-}
-.workspaces span:hover {
-    text-decoration: underline;
+    /* Active workspace */
+    button.focused {
+        color: $base5;
+    }
+
+    /* Hovered workspace */
+    button:hover {
+        color: $base5;
+    }
 }
 
 /* Time */
 .date {
-    color: $base10; /* yellow */
+    font-weight: bold;
 }

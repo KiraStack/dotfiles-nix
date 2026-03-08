@@ -43,11 +43,14 @@
     gcc
     git
     lua-language-server
-    nodejs_25
     nixfmt
+    nodejs_25
     prettierd
     pyright
-    python3
+    (pkgs.python3.withPackages (python-pkgs: [
+      python-pkgs.pip
+      python-pkgs.virtualenv
+    ]))
     rustup
     typescript
 
@@ -67,9 +70,16 @@
 
     # Media
     cava
+    cmus
+    maim
     mpv
+    slop
     steam
     vesktop
+
+    # System monitors
+    dunst
+    htop
 
     # Window management
     eww
@@ -79,10 +89,6 @@
     picom
     rofi
     sxhkd
-
-    # System monitors
-    dunst
-    htop
 
     # Portals
     xdg-desktop-portal
@@ -331,6 +337,10 @@
     XDG_STATE_HOME = "$HOME/.local/state";
     XDG_BIN_HOME = "$HOME/.local/bin";
 
+    # Cursors
+    XCURSOR_THEME = "Bibata-Modern-Ice";
+    XCURSOR_SIZE = "24";
+
     # Package managers
     CARGO_BIN_PATH = "$HOME/.cargo/bin";
     PNPM_BIN = "$HOME/.local/share/pnpm";
@@ -363,7 +373,7 @@
       "text/html" = "firefox.desktop";
       "text/pdf" = "firefox.desktop";
       "image/*" = "mpv.desktop";
-      "audio/*" = "mpv.desktop";
+      "audio/*" = "cmus.desktop"; # "mpv.desktop";
       "video/*" = "mpv.desktop";
       "application/zip" = "file-roller.desktop";
 

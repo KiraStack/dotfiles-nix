@@ -51,6 +51,11 @@ export const eggs = #{
         enabled: os.linux,
         templates: [], // copied as is
     },
+    eww: #{
+        targets: home + "/.config/eww",
+        enabled: os.linux,
+        templates: [], // copied as is
+    },
     fish: #{
         targets: home + "/.config/fish",
         enabled: os.linux || os.darwin,

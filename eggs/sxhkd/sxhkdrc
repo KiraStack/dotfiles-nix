@@ -11,7 +11,7 @@ super + w
 #   thunar
 
 # Program Launcher
-super + d
+super + space
   rofi -show drun
 
 # Clipboard manager
@@ -20,7 +20,7 @@ super + v
 
 # Screenshot
 super + p
-  screenshot | wl-copy
+  screenshot
 
 # Focus
 super + {h,j,k,l}

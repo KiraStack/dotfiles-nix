@@ -27,11 +27,8 @@ bspc config pointer_action3 resize_corner
 
 # Window rules
 bspc rule -a Navigator desktop=1 follow=on
-bspc rule -a firefox desktop=1 follow=on
-bspc rule -a discord desktop=2 follow=on
-bspc rule -a Code desktop=3 follow=on
-bspc rule -a Steam desktop=4 follow=on
-bspc rule -a mpv state=fullscreen follow=on
+bspc rule -a Thunar desktop=focused state=floating
+bspc rule -a mpv desktop=focused state=fullscreen
 
 # Remove cache
 rm -rf $HOME/.cache/dunst/
@@ -46,8 +43,9 @@ xset m 0 0
 hsetroot -fill "$HOME/.config/bspwm/imgs/wallpaper.png" &
 
 # Autostart programs
-eww daemon &
-eww open bar
+pkill eww > /dev/null 2>&1
+eww --config $HOME/.config/eww/ daemon &
+eww --config $HOME/.config/eww/ open bar
 pgrep -x sxhkd > /dev/null || sxhkd &
 dunst --config $HOME/.config/dunst/dunstrc &
 pkill picom > /dev/null 2>&1

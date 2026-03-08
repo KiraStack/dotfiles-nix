@@ -9,7 +9,7 @@ fi
 # Set theme
 xrandr
 xrdb -merge ~/.Xresources >/dev/null 2>&1 || true
-xsetroot -cursor_name left_ptr # fix x-shaped cursor
+xsetroot -cursor_name left_ptr &
 
 # Environment
 export HISTCONTROL=ignoredups:erasedups

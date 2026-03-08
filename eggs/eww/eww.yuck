@@ -1,0 +1,14 @@
+; Constants
+(defvar debug 0)
+
+; Time query
+(defpoll time
+  :interval "10s"
+  "date '+%H:%M %b %d, %Y'"
+)
+
+; Listeners
+(deflisten workspaces :initial "[]" "sh bin/get_workspaces")
+
+; Headers
+(include "bar/eww.yuck")

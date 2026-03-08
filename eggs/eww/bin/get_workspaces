@@ -1,0 +1,8 @@
+#!/bin/sh
+focused=$(bspc query -D --desktop focused --names)
+bspc query -D --names | awk -v f="$focused" '{
+    for(i=1;i<=NF;i++){
+        if($i==f){printf "<span class=\"focused\">%s</span> ",$i}
+        else{printf "%s ",$i}
+    }
+} END{printf "\n"}'

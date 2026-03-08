@@ -1,0 +1,83 @@
+; Workspaces widget
+(defwidget workspaces []
+  (box
+    :class "workspaces"
+    :orientation "h"
+    :space-evenly false
+    :valign "center"
+    (literal :content "${workspaces}")
+  )
+)
+
+; Time widget
+(defwidget date []
+  (box
+    :class "date"
+    :orientation "h"
+    :space-evenly true
+    (literal :content "${time}")
+  )
+)
+
+; Left section of the bar
+(defwidget left []
+  (box
+    :class "bar-left"
+    :orientation "h"
+    :space-evenly false
+    :halign "start"
+    ;(widget)
+    ; (launcher)
+    ; (workspaces)
+    ;(windowtitle)
+  )
+)
+
+; Centre section of the bar
+(defwidget center []
+  (box
+    :class "bar-center"
+    :orientation "h"
+    :space-evenly false
+    :halign "center"
+    (date)
+  )
+)
+
+; Right section of the bar
+(defwidget right []
+  (box
+    :class "bar-right"
+    :orientation "h"
+    :space-evenly false
+    :halign "end"
+    ; (tray)
+    ; (update)
+  )
+)
+
+; Main bar widget
+(defwidget bar []
+  (box
+    :class "bar"
+    :orientation "h"
+    :space-evenly true
+    ; (left)
+    (center)
+    ; (right)
+  )
+)
+
+; Main bar window
+(defwindow bar
+  :monitor 0
+  :windowtype "dock"
+  :geometry (geometry
+    :x "0px"
+    :y "20px"
+    :width "98%"
+    :height "25px"
+  :anchor "top center")
+  :reserve (struts :distance "0px" :side "top")
+  (bar)
+)

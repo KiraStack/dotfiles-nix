@@ -1,0 +1,43 @@
+#!/bin/sh
+
+# Get the current volume and mute status
+get_volume() {
+    pactl get-sink-volume @DEFAULT_SINK@ | awk '{print $5}' | head -n1 | tr -d '%'
+}
+
+# Get the current mute status
+get_mute() {
+    pactl get-sink-mute @DEFAULT_SINK@ | awk '{print $2}'
+}
+
+# Write volume to stdout (via `yuck`)
+print_volume() {
+    vol=$(get_volume)
+    mute=$(get_mute)
+
+    if [[ "$mute" == "yes" || vol == 0 ]]; then
+        icon="󰸈"
+        class="muted"
+    elif (( vol < 35 )); then
+        icon="󰕿"
+        class="low"
+    elif (( vol < 70 )); then
+        icon="󰖀"
+        class="medium"
+    else
+        icon="󰕾"
+        class="high"
+    fi
+
+    echo "(eventbox :cursor \"pointer\" \
+        (box :spacing 0 :class \"volume $class\" \
+            (label :class \"icon\" :text \"$icon\") \
+            (label :text \"$vol%\")))"
+}
+
+print_volume
+
+# Subscribe to volume changes
+pactl subscribe | grep --line-buffered "sink" | while read -r _; do
+    print_volume
+done

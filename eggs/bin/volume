@@ -1,5 +1,4 @@
 #!/bin/sh
-#!/bin/sh
 
 step=5
 sink="${SINK:-$(pactl info | awk -F': ' '/Default Sink/ {print $2}')}"

@@ -1,0 +1,67 @@
+#!/bin/sh
+
+BAT_PATH="/sys/class/power_supply"
+
+# Get the first battery found in /sys/class/power_supply
+get_battery() {
+    for bat in "$BAT_PATH"/BAT*; do
+        [[ -d "$bat" ]] && echo "$bat" && return
+    done
+}
+
+# Write battery to stdout (via `yuck`)
+print_battery() {
+    local bat
+    bat=$(get_battery)
+
+    [[ -z "$bat" ]] && exit
+
+    capacity=$(cat "$bat/capacity")
+    status=$(cat "$bat/status")
+
+    if [[ "$status" == "Charging" ]]; then
+        icon="󰂄"
+        class="charging"
+    elif (( capacity < 10 )); then
+        icon="󰂎"
+        class="low"
+    elif (( capacity < 20 )); then
+        icon="󰁻"
+        class="low"
+    elif (( capacity < 30 )); then
+        icon="󰁼"
+        class="low"
+    elif (( capacity < 40 )); then
+        icon="󰁽"
+        class="low"
+    elif (( capacity < 50 )); then
+        icon="󰁾"
+        class="medium"
+    elif (( capacity < 60 )); then
+        icon="󰁿"
+        class="medium"
+    elif (( capacity < 70 )); then
+        icon="󰂀"
+        class="high"
+    elif (( capacity < 80 )); then
+        icon="󰂁"
+        class="high"
+    elif (( capacity < 90 )); then
+        icon="󰂂"
+        class="high"
+    else
+        icon="󰁹"
+        class="high"
+    fi
+
+    echo "(box :class \"battery $class\" :spacing 0 \
+        (label :class \"icon\" :text \"$icon\") \
+        (label :text \"$capacity%\"))"
+}
+
+print_battery
+
+# Subscribe to battery changes
+while sleep 30; do
+    print_battery
+done

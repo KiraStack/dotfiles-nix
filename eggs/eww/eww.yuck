@@ -9,6 +9,8 @@
 
 ; Workspaces query (listener)
 (deflisten workspaces "bin/workspaces")
+(deflisten volume "bin/volume")
+(deflisten battery "bin/battery")
 
 ; Headers
 (include "bar/eww.yuck")

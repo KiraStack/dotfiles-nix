@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/bin/sh
 
 # Check if a list contains an element
 contains() {
@@ -33,7 +33,7 @@ print_workspaces() {
 
 print_workspaces
 
-# Subscribe to bspwm desktop changes
+# Subscribe to workspace changes
 bspc subscribe desktop node_transfer | while read -r _; do
     print_workspaces &
 done

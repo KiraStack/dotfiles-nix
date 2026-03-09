@@ -3,14 +3,42 @@
   (box
     :class "workspaces"
     (literal :content "${workspaces}")
-  )
-)
+  ))
 
 ; Time widget
 (defwidget date []
   (box
     :class "date"
     (literal :content "time")
+  ))
+
+; Volume widget
+(defwidget volume []
+  (eventbox
+    :class "volume"
+    :onscroll "bash -c 'case \"{}\" in
+      up)
+        v=$(pactl get-sink-volume @DEFAULT_SINK@ | awk \"NR==1{print \\$5}\" | tr -d %);
+        step=5;
+        [ $((100 - v)) -lt 5 ] && step=$((100 - v)); # shrink step near max
+        [ $step -gt 0 ] && pactl set-sink-volume @DEFAULT_SINK@ $((v + step))% ;;
+      down)
+        v=$(pactl get-sink-volume @DEFAULT_SINK@ | awk \"NR==1{print \\$5}\" | tr -d %);
+        step=5;
+        [ $v -lt 5 ] && step=$v; # shrink step near min
+        [ $step -gt 0 ] && pactl set-sink-volume @DEFAULT_SINK@ $((v - step))% ;;
+    esac'"
+    :onclick "pactl set-sink-mute @DEFAULT_SINK@ toggle"
+    (box
+      :class "volume"
+      (literal :content "${volume}")
+    )))
+
+; Battery widget
+(defwidget battery []
+  (box
+    :class "battery"
+    (literal :content "${battery}")
   ))
 
 ; Left section of the bar
@@ -46,6 +74,8 @@
     :space-evenly false
     :halign "end"
     :valign "center"
+    (volume)
+    (battery)
     ; (tray)
     ; (update)
   ))

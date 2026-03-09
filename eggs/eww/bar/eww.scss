@@ -33,3 +33,33 @@
 .date {
     font-weight: bold;
 }
+
+/* Volume states */
+.volume {
+    font-weight: bold;
+
+    .muted .icon {
+        color: $base8; /* red */
+    }
+}
+
+/* Battery states */
+.battery {
+    font-weight: bold;
+
+    .charging .icon {
+        color: $base11; /* green */
+    }
+
+    .low .icon {
+        color: $base8; /* red */
+    }
+
+    .medium .icon {
+        color: $base10; /* yellow */
+    }
+
+    .high .icon {
+        color: $base11; /* green */
+    }
+}

@@ -18,7 +18,15 @@ pkgs.mkShell.override
     ];
     shellHook = ''
       echo "Hello, world!"
+
+      # Install nightly toolchain
       rustup toolchain install nightly
       rustup default nightly
+
+      # Check for yolk-dependent files (if so, install yolk)
+      if [ -f ./yolk.rhai ]; then
+        echo "Configuration file `yolk.rhai` found; deploying `yolk_dots`."
+        cargo install --force yolk_dots
+      fi
     '';
   }

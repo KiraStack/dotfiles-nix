@@ -10,14 +10,11 @@ pkgs.mkShell.override
   }
   {
     packages = with pkgs; [
-      nixd
-      cachix
-      lorri
-      niv
-      nixfmt-classic
-      statix
-      vulnix
-      haskellPackages.dhall-nix
+      codespell # spell checker
+      niv # dependency updater
+      nixfmt-classic # Nix code formatter
+      statix # static analysis
+      vulnix # vulnerability scanner
     ];
     shellHook = ''
       echo "Hello, world!"

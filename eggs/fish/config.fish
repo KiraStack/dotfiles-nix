@@ -22,7 +22,7 @@ if status is-interactive
 
     # Nix template aliases
     alias nix-default 'nix develop /etc/nixos/templates#default'
-    alias nix-c 'nix develop /etc/nixos/templates#c-cpp'
+    alias nix-c-cpp 'nix develop /etc/nixos/templates#c-cpp'
     alias nix-nix 'nix develop /etc/nixos/templates#nix'
     alias nix-python 'nix develop /etc/nixos/templates#python'
     alias nix-rust 'nix develop /etc/nixos/templates#rust'

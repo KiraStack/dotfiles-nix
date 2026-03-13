@@ -9,7 +9,7 @@ pkgs.mkShell.override
     # stdenv = pkgs.clangStdenv;
   }
   {
-    # packages = with pkgs; [ ];
+    packages = [ pkgs.codespell ];
     shellHook = ''
       echo "Hello, world!"
     '';

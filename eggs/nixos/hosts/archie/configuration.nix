@@ -15,8 +15,7 @@ in
     ./host-packages.nix
     ../../subsystems/core
     ../../subsystems/programs/${browser}
-    ../../subsystems/programs/${editor}
-    ../../subsystems/programs/vscode # temporary (used as debug tool).
+    # ../../subsystems/programs/${editor}
     ../../subsystems/desktop/${desktop}
     ../../hardware/${videoDriver}
     ../../subsystems/programs/${shell}
@@ -27,5 +26,6 @@ in
     ../../subsystems/programs/obs-studio
     ../../subsystems/programs/starship
     ../../subsystems/programs/steam
+    ../../subsystems/programs/vscode
   ];
 }

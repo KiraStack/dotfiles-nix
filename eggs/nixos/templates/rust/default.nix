@@ -10,11 +10,12 @@ pkgs.mkShell.override
   }
   {
     packages = with pkgs; [
-      clippy
-      # rustc  # replaced by shellHook via rustup
-      # cargo  # replaced by shellHook via rustup
-      rustup
-      rustfmt
+      cargo-audit # security audit for dependencies
+      clippy # linter for Rust
+      rust-analyzer # IDE language server
+      rustfmt # code formatter
+      rustup # Rust toolchain manager
+      sccache # caching compiler builds
     ];
     shellHook = ''
       echo "Hello, world!"

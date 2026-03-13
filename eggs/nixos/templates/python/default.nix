@@ -10,11 +10,12 @@ pkgs.mkShell.override
   }
   {
     packages = with pkgs; [
+      python313 # interpreter
       black # code formatter
       codespell # spell checker
-      pip # python package manager
+      python313Packages.pip # package manager
       pyright # type checker
-      venvShellHook # python venv setup
+      python313Packages.venvShellHook # venv setup
     ];
     shellHook = ''
       echo "Hello, world!"

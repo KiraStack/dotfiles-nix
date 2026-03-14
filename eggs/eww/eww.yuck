@@ -1,16 +1,15 @@
 ; Constants
 (defvar debug 0)
 
-; Time query
-(defpoll time
-  :interval "10s"
-  "date '+%H:%M %b %d, %Y'"
-)
+; Queries
+(defpoll date :interval "1m" "date +%d/%m")
 
-; Workspaces query (listener)
+; Listeners
 (deflisten workspaces "bin/workspaces")
-(deflisten volume "bin/volume")
+(deflisten speakers "bin/speakers")
 (deflisten battery "bin/battery")
+(deflisten network "bin/network")
+(deflisten microphone "bin/microphone")
 
 ; Headers
 (include "bar/eww.yuck")

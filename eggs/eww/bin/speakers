@@ -1,0 +1,6 @@
+#!/bin/sh
+while sleep 0.1; do
+    vol=$(pactl get-sink-volume @DEFAULT_SINK@ | awk 'NR==1{print $5}' | tr -d '%')
+    mute=$(pactl get-sink-mute @DEFAULT_SINK@ | awk '{print $2}')  # extract "yes" or "no"
+    echo "{\"volume\":$vol,\"muted\":$( [ "$mute" = yes ] && echo true || echo false )}"
+done

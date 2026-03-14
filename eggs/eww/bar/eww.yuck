@@ -3,82 +3,127 @@
   (box
     :class "workspaces"
     (literal :content "${workspaces}")
-  ))
+  )
+)
 
 ; Time widget
 (defwidget date []
   (box
     :class "date"
-    (literal :content "time")
-  ))
+    (label
+      :class "tooltip"
+      :text "${date}"
+    )
+  )
+)
 
-; Volume widget
-(defwidget volume []
+; Network-based widget
+(defwidget network []
+  (box
+    :class "network"
+    (label
+      :class "${network == 'no' ? 'disconnected' : 'connected'}"
+      :text  "${network == 'no' ? '󰖪' : '󱚽'}"
+    )
+  )
+)
+
+; Microphone widget
+(defwidget microphone []
+  (box
+    :class "microphone"
+    (button
+      :class "${microphone == 'true' ? 'running' : 'muted'}"
+      :onclick "pactl set-source-mute @DEFAULT_SOURCE@ toggle"
+      (label :text "${microphone == 'true' ? '󰍬' : '󰍭'}")
+    )
+  )
+)
+
+; Speaker widget
+(defwidget speakers []
   (eventbox
-    :class "volume"
-    :onscroll "bash -c 'case \"{}\" in
-      up)
-        v=$(pactl get-sink-volume @DEFAULT_SINK@ | awk \"NR==1{print \\$5}\" | tr -d %);
-        step=5;
-        [ $((100 - v)) -lt 5 ] && step=$((100 - v)); # shrink step near max
-        [ $step -gt 0 ] && pactl set-sink-volume @DEFAULT_SINK@ $((v + step))% ;;
-      down)
-        v=$(pactl get-sink-volume @DEFAULT_SINK@ | awk \"NR==1{print \\$5}\" | tr -d %);
-        step=5;
-        [ $v -lt 5 ] && step=$v; # shrink step near min
-        [ $step -gt 0 ] && pactl set-sink-volume @DEFAULT_SINK@ $((v - step))% ;;
-    esac'"
-    :onclick "pactl set-sink-mute @DEFAULT_SINK@ toggle"
-    (box
-      :class "volume"
-      (literal :content "${volume}")
-    )))
+    :class "speakers"
+    (eventbox
+      :onclick "pactl set-sink-mute @DEFAULT_SINK@ toggle && $HOME/bin/speakers"
+      :onscroll "v=$(pactl get-sink-volume @DEFAULT_SINK@ | awk 'NR==1{print $5}' | tr -d '%'); step=5;
+                  case \"{}\" in
+                    up) [ $((100-v)) -lt 5 ] && step=$((100-v)); [ $step -gt 0 ] && pactl set-sink-volume @DEFAULT_SINK@ $((v+step))% ;;
+                    down) [ $v -lt 5 ] && step=$v; [ $step -gt 0 ] && pactl set-sink-volume @DEFAULT_SINK@ $((v-step))% ;;
+                  esac;
+                  $HOME/bin/speakers"
+      (label
+        :class "${speakers.muted ? 'muted' : ''}"
+        :text "${speakers.muted ? '󰖁' : speakers.volume > 70 ? '󰕾' : speakers.volume > 35 ? '󰖀' : '󰕿'}"
+        :tooltip "${speakers.muted ? 'Muted' : speakers.volume + '%'}"
+      )
+      ; (scale
+      ;   :min 0
+      ;   :max 100
+      ;   :value "${speakers.volume}"
+      ;   :onchange "pactl set-sink-volume @DEFAULT_SINK@ {}%"
+      ; )
+    )
+  )
+)
 
-; Battery widget
+; Battery capacity widget
 (defwidget battery []
   (box
-    :class "battery"
-    (literal :content "${battery}")
-  ))
+    (label
+      :class "${EWW_BATTERY["BAT0"].capacity < 20 ? 'critical' : ''}"
+      :text  "${EWW_BATTERY["BAT0"].capacity > 95 ? '󰁹'
+      : EWW_BATTERY["BAT0"].capacity > 90 ? '󰂂'
+      : EWW_BATTERY["BAT0"].capacity > 80 ? '󰂁'
+      : EWW_BATTERY["BAT0"].capacity > 70 ? '󰂀'
+      : EWW_BATTERY["BAT0"].capacity > 60 ? '󰁿'
+      : EWW_BATTERY["BAT0"].capacity > 50 ? '󰁾'
+      : EWW_BATTERY["BAT0"].capacity > 40 ? '󰁽'
+      : EWW_BATTERY["BAT0"].capacity > 30 ? '󰁼'
+      : EWW_BATTERY["BAT0"].capacity > 20 ? '󰁻'
+      : EWW_BATTERY["BAT0"].capacity > 10 ? '󰁺'
+      : '󰂃'}"
+      :tooltip "${EWW_BATTERY["BAT0"].capacity}% — ${EWW_BATTERY["BAT0"].status}"
+    )
+  )
+)
 
-; Left section of the bar
+; Left bar widget container
 (defwidget left []
   (box
     :class "left"
     :orientation "h"
-    :space-evenly false
     :halign "start"
     :valign "center"
-    ; (widget)
-    ; (launcher)
     (workspaces)
-  ))
+  )
+)
 
-; Centre section of the bar
+; Centre bar widget container
 (defwidget center []
   (box
     :class "center"
     :orientation "h"
-    :space-evenly false
     :halign "center"
     :valign "center"
     (date)
-    ; (window) ; window title
-  ))
+  )
+)
 
-; Right section of the bar
+; Right bar widget container
 (defwidget right []
   (box
     :class "right"
     :orientation "h"
-    :space-evenly false
     :halign "end"
     :valign "center"
-    (volume)
+    :spacing 10
+    (network)
+    (microphone)
+    (speakers)
     (battery)
-    ; (tray)
-    ; (update)
-  ))
+  )
+)
 
 ; Main bar widget
 (defwidget bar []
@@ -86,16 +131,21 @@
     (left)
     (center)
     (right)
-  ))
+  )
+)
 
-; Main bar window
-(defwindow bar :monitor 0
+; Bar window
+(defwindow bar
+  :monitor 0
   :windowtype "dock"
-  :geometry (geometry
-    :x "0px"
-    :y "8px"
-    :width "98%"
-    :height "40px"
-  :anchor "top center")
+  :geometry
+    (geometry
+      :x "0px"
+      :y "8px"
+      :width "98%"
+      :height "40px"
+      :anchor "top center"
+    )
   :reserve (struts :distance "40px" :side "top")
-  (bar))
+  (bar)
+)

@@ -1,0 +1,10 @@
+#!/bin/sh
+get() {
+    awk -v id="$1" '$1=="Source"&&$2=="#"id{f=1} f&&/State:/{print $2=="RUNNING"?1:0; exit}' <(pactl list sources)
+}
+id=$(pactl list sources short | awk -v def="$(pactl get-default-source)" '$2==def{print $1}')
+echo $(get "$id")
+# Live updates
+pactl subscribe | while read -r l; do
+    [[ $l == *"Event 'change' on source #$id"* ]] && id=$(pactl list sources short | awk -v def="$(pactl get-default-source)" '$2==def{print $1}') && echo $(get "$id")
+done

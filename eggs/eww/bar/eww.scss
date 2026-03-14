@@ -1,65 +1,51 @@
 /* Main bar */
 .bar {
-    background-color: $base0;
-    color: $base5;
-    font-family: 'JetBrainsMono Nerd Font Mono, monospace';
-    font-size: 1.2rem;
-    padding: 0.5rem 1rem;
+    background-color: $base00;
+    color: $base05;
+    font-size: 1.1rem;
+    font-weight: bold;
+    padding: 0 1rem;
     border-radius: 12px;
-    /* box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3); */
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3);
 }
 
 /* Sections
 .left, .center, .right {}
 */
 
-/* Workspaces */
+/* Desktop styles */
 .workspaces {
-    color: $base3;
-    font-weight: bold;
+    color: $base03;
 
     /* Active workspace */
     button.focused {
-        color: $base5;
+        color: $base05;
     }
 
     /* Hovered workspace */
     button:hover {
-        color: $base5;
+        color: $base05;
     }
 }
 
-/* Time */
-.date {
-    font-weight: bold;
+/* Speaker styles */
+* {
+    margin: 0px;
+    padding: 0px;
+}
+.speakers scale trough {
+    min-height: 10px;
+    min-width: 40px;
 }
 
-/* Volume states */
-.volume {
-    font-weight: bold;
-
-    .muted .icon {
-        color: $base8; /* red */
-    }
+/* Icons states */
+.connected,
+.running {
+    color: $base11;
 }
 
-/* Battery states */
-.battery {
-    font-weight: bold;
-
-    .charging .icon {
-        color: $base11; /* green */
-    }
-
-    .low .icon {
-        color: $base8; /* red */
-    }
-
-    .medium .icon {
-        color: $base10; /* yellow */
-    }
-
-    .high .icon {
-        color: $base11; /* green */
-    }
+.disconnected,
+.muted,
+.critical {
+    color: $base08;
 }

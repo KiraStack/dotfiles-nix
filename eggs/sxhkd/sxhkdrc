@@ -3,7 +3,7 @@ super + Return
   kitty
 
 # Browser
-super + w
+super + b
   firefox
 
 # File Manager

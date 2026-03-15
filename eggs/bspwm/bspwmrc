@@ -60,6 +60,3 @@ pgrep -f bin/alert > /dev/null 2>&1 || bin/alert &
 # wl-paste --type text --watch cliphist store &
 # wl-paste --type image --watch cliphist store &
 clipcatd &
-
-# Lower elkowar's widgets behind windows
-# nix-shell -p xdo --run 'xdo lower -N Eww'

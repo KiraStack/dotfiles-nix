@@ -66,7 +66,7 @@ export const eggs = #{
     },
     kitty: #{
         targets: home + "/.config/kitty",
-        enabled: os.linux,
+        enabled: false,
         templates: [], // copied as is
     },
     picom: #{

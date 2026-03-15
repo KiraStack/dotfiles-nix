@@ -27,7 +27,6 @@
     git # version control
     hsetroot # wallpaper setter
     htop # interactive process viewer
-    kitty # GPU-accelerated terminal
     maim # screenshot tool
     mpv # media player
     neovim # terminal editor

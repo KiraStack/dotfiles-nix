@@ -1,7 +1,7 @@
 {
   # Programs
   desktop = "bspwm"; # can be 'bspwm'
-  terminal = "kitty"; # can be 'kitty'
+  terminal = "st"; # can be 'st' or 'kitty'
   editor = "vscode"; # can be 'vscode' or 'neovim'
   browser = "firefox"; # can be 'firefox'
   shell = "fish"; # can be 'bash', 'zsh' or 'fish'

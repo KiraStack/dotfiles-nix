@@ -41,21 +41,25 @@ in
         username = "${hostname}";
         homeDirectory = "/home/${hostname}";
         stateVersion = "26.05"; # nixOS version reference for upgrades.
-        sessionVariables = rec {
-          EDITOR =
-            if (editor == "nixvim" || editor == "neovim" || editor == "nvchad") then
-              "nvim"
-            else if editor == "vscode" then
-              "code"
-            else
-              "nano";
-          BROWSER = "${browser}";
-          TERMINAL = "${terminal}";
-        };
+        # sessionVariables = rec {};
       };
       programs.home-manager.enable = true; # let home-manager manage itself
       xdg.enable = true;
     };
+  };
+
+  # Set session variables
+  environment.sessionVariables = rec {
+    EDITOR =
+      if (editor == "nixvim" || editor == "neovim" || editor == "nvchad") then
+        "nvim"
+      else if editor == "vscode" then
+        "code"
+      else
+        "nano";
+    VISUAL = EDITOR;
+    BROWSER = "${browser}";
+    TERMINAL = "${terminal}";
   };
 
   # Local user accounts

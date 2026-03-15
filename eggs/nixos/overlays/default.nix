@@ -1,16 +1,16 @@
 { inputs, ... }:
 {
   # Overlay custom derivations into nixpkgs so you can use pkgs.<name>
-  # additions = target: old: import ./pkgs { pkgs = target; inherit hostname; };
+  # additions = self: super: import ./pkgs { pkgs = self; inherit hostname; };
 
-  # Changes
+  # Package overrides
   # See: https://wiki.nixos.org/wiki/Overlays
-  modifications = target: old: {
+  modifications = self: super: {
     # stable = import inputs.nixpkgs-stable {
     #   system = final.stdenv.hostPlatform.system;
     #   config.allowUnfree = true;
     # };
-    discord = old.discord.override {
+    discord = super.discord.override {
       withVencord = true;
       withOpenASAR = true;
       enableAutoscroll = true;

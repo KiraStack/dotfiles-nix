@@ -42,7 +42,7 @@ xsetroot -cursor_name left_ptr
 # Disable mouse acceleration
 xset m 0 0
 
-# Background
+# Set the background
 hsetroot -fill "$HOME/.config/bspwm/imgs/wallpaper.png" &
 
 # Autostart programs
@@ -62,4 +62,4 @@ pgrep -f bin/alert > /dev/null 2>&1 || bin/alert &
 clipcatd &
 
 # Lower elkowar's widgets behind windows
-nix-shell -p xdo --run 'xdo lower -N Eww'
+# nix-shell -p xdo --run 'xdo lower -N Eww'

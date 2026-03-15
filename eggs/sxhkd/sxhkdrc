@@ -1,10 +1,10 @@
 # Console
 super + Return
-  kitty
+  $TERMINAL
 
 # Browser
 super + b
-  firefox
+  $BROWSER
 
 # File Manager
 # super + n

@@ -26,7 +26,7 @@ super + shift + v
 super + p
   screenshot
 super + shift + p
-  screenshot select
+  screenshot selectq233
 
 # Focus
 super + {h,j,k,l}
@@ -46,39 +46,39 @@ super + g
 super + {1-9}
   bspc desktop -f ^{1-9}
 
-# Switch and move focused node to desktop 1
+# Switch and move focused node
 super + shift + 1
   bspc node -d ^1 && bspc desktop -f ^1
 
-# Switch and move focused node to desktop 2
+# Switch and move focused node
 super + shift + 2
   bspc node -d ^2 && bspc desktop -f ^2
 
-# Switch and move focused node to desktop 3
+# Switch and move focused node
 super + shift + 3
   bspc node -d ^3 && bspc desktop -f ^3
 
-# Switch and move focused node to desktop 4
+# Switch and move focused node
 super + shift + 4
   bspc node -d ^4 && bspc desktop -f ^4
 
-# Switch and move focused node to desktop 5
+# Switch and move focused node
 super + shift + 5
   bspc node -d ^5 && bspc desktop -f ^5
 
-# Switch and move focused node to desktop 6
+# Switch and move focused node
 super + shift + 6
   bspc node -d ^6 && bspc desktop -f ^6
 
-# Switch and move focused node to desktop 7
+# Switch and move focused node
 super + shift + 7
   bspc node -d ^7 && bspc desktop -f ^7
 
-# Switch and move focused node to desktop 8
+# Switch and move focused node
 super + shift + 8
   bspc node -d ^8 && bspc desktop -f ^8
 
-# Switch and move focused node to desktop 9
+# Switch and move focused node
 super + shift + 9
   bspc node -d ^9 && bspc desktop -f ^9
 

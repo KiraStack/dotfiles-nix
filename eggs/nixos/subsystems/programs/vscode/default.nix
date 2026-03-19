@@ -7,6 +7,7 @@
       with pkgs.vscode-extensions;
       [
         eamodio.gitlens # git tracking
+        esbenp.prettier-vscode # code formatting
         jnoortheen.nix-ide
         kilocode.kilo-code # ai assistant
         ms-vscode.cpptools
@@ -14,16 +15,16 @@
       ]
       ++ pkgs.vscode-utils.extensionsFromVscodeMarketplace [
         {
-          name = "remote-ssh-edit";
-          publisher = "ms-vscode-remote";
-          version = "0.47.2";
-          sha256 = "1hp6gjh4xp2m1xlm1jsdzxw9d8frkiidhph6nvl24d0h8z34w49g"; # old: lib.fakeSha256;
-        }
-        {
           name = "jetbrains-file-icon-theme";
           publisher = "fogio";
           version = "1.3.1";
           sha256 = "6hKEcfjfNVbdjfdyUxwQJ7Ap9pM0JYB1UVQoBtydLlI=";
+        }
+        {
+          name = "remote-ssh-edit";
+          publisher = "ms-vscode-remote";
+          version = "0.47.2";
+          sha256 = "1hp6gjh4xp2m1xlm1jsdzxw9d8frkiidhph6nvl24d0h8z34w49g"; # old: lib.fakeSha256;
         }
         {
           name = "vsc-discord-rpc";

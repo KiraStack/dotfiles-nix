@@ -33,6 +33,6 @@ if command -v xclip >/dev/null 2>&1; then
 fi
 
 # Send notification
-if command -v dunstify >/dev/null 2>&1; then
-    dunstify -u normal -t 3000 -i info "Screenshot saved: $FILE"
-fi
+if command -v herbe >/dev/null 2>&1
+    herbe "Screenshot saved: $FILE"
+end

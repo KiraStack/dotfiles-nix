@@ -16,37 +16,38 @@
 
   # Packages
   environment.systemPackages = with pkgs; [
-    ani-cli # watch anime in terminal
-    cava # audio visualizer
-    clipcat # Wayland clipboard
-    cmus # terminal music player
-    curl # data transfer from URLs
-    dunst # notifications
-    eww # widget system
-    file-roller # archive manager GUI
-    git # version control
-    hsetroot # wallpaper setter
-    htop # interactive process viewer
+    # System
+    curl # http client
+    # file-roller # archive manager
+    herbe # notifications
+    htop # process viewer
+    lf # file manager
+    ripgrep # search tool
+    tree
+    unzip
+    wget # http downloader
+
+    # Development
+    git
+    notepad-next
+
+    # Clipboard
     maim # screenshot tool
+    slop # screen selector
+    xclip # clip tool
+
+    # Media
+    ani-cli # anime
+    cava # audio display
     mpv # media player
-    neovim # terminal editor
-    nixfmt # nix (code) formatter
-    notepad-next # notepad-like text editor
-    overskride # bluetooth (gui)
-    playerctl # control media players
-    ranger # terminal file manager
-    ripgrep # fast recursive search
+    playerctl # media control
+
+    # Graphics
+    eww # widget system
+    hsetroot # wallpaper setter
     rofi # application launcher
-    slop # select screen region
-    tree # show directory structure
-    unzip # extract .zip archives
-    vscode # Visual Studio Code editor
-    wget # download files
-    xclip # X11 clipboard CLI
     xdg-desktop-portal # portal backend
-    xdg-desktop-portal-gnome # GNOME portal backend
-    xdg-desktop-portal-gtk # GTK implementation
-    xdg-desktop-portal-wlr # wlroots portal backend
+    xdg-desktop-portal-gnome
     xdg-utils # desktop integration tools
   ];
 

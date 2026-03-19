@@ -1,22 +1,26 @@
-# Console
+# Open terminal
 super + Return
   $TERMINAL
 
-# Browser
+# Open default browser
 super + b
   $BROWSER
 
-# File Manager
-# super + n
-#   thunar
+# Open file manager
+super + n
+    $TERMINAL -e lf
 
 # Program Launcher
 super + space
   rofi -show drun
 
-# Clipboard manager
+# Clipboard menu via rofi (X11)
 super + v
-  clipcat-menu
+  tac "$HOME/.cache/clipboard.txt" 2>/dev/null | awk '!seen[$0]++' | rofi -dmenu -i -p "Clipboard" | xclip -selection clipboards
+
+# Clear clipboard history
+super + shift + v
+  > "$HOME/.cache/clipboard.txt" && command -v herbe >/dev/null && herbe "Clipboard history cleared"
 
 # Screenshot
 super + p
@@ -103,7 +107,6 @@ XF86AudioLowerVolume
   volume change down
 XF86AudioMute
   volume -D pulse sset Master toggle-mute
-
 
 # Restart bspwm
 super + alt + w

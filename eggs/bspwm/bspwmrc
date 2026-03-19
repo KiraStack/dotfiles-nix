@@ -31,10 +31,9 @@ bspc rule -a Thunar desktop=focused state=floating
 bspc rule -a mpv desktop=focused state=fullscreen
 
 # Remove cache
-rm -rf $HOME/.cache/dunst/
-rm $HOME/.cache/dunst.log
-rm $HOME/.cache/eww-calendar.lock
-rm $HOME/.cache/eww-control-center.lock
+rm -fr $HOME/.cache/eww/
+rm -fr $HOME/.cache/fish/
+rm -fr $HOME/.cache/fontconfig/
 
 # Set default pointer
 xsetroot -cursor_name left_ptr
@@ -45,18 +44,25 @@ xset m 0 0
 # Set the background
 hsetroot -fill "$HOME/.config/bspwm/imgs/wallpaper.png" &
 
-# Autostart programs
-pkill eww > /dev/null 2>&1
-eww --config $HOME/.config/eww/ daemon &
-eww --config $HOME/.config/eww/ open bar
-pgrep -x sxhkd > /dev/null || sxhkd &
-dunst --config $HOME/.config/dunst/dunstrc &
-pkill picom > /dev/null 2>&1
-picom --config $HOME/.config/picom/picom.conf &
-pgrep -f bin/alert > /dev/null 2>&1 || bin/alert &
+# Autostart widgets
+pkill eww >/dev/null 2>&1
+eww --config "$HOME/.config/eww/" daemon &
+pgrep -f 'eww --config .* open bar' >/dev/null || eww --config "$HOME/.config/eww/" open bar
+
+# Autostart hotkey daemon
+pgrep -x sxhkd >/dev/null || sxhkd &
+
+# Autostart compositor
+pkill picom >/dev/null 2>&1
+picom --config "$HOME/.config/picom/picom.conf" &
+
+# Low battery alert
+pgrep -f 'bin/alert' >/dev/null || ./bin/alert &
 
 # Clipboard manager
-# cliphist wipe &
-# wl-paste --type text --watch cliphist store &
-# wl-paste --type image --watch cliphist store &
-clipcatd &
+pgrep -f 'xclip.*clipboard.txt' >/dev/null || (
+  while true; do
+    xclip -o -selection clipboard > ~/.cache/clipboard.txt 2>/dev/null
+    sleep 0.5
+  done
+) &

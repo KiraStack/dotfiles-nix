@@ -1,6 +1,6 @@
 configuration {
     modes: "window,drun,run,ssh";
-    font: "JetBrainsMono Nerd Font 10";
+    font: "JetBrainsMono Nerd Font 14";
     //	location: 0;
     //	yoffset: 0;
     //	xoffset: 0;
@@ -214,7 +214,7 @@ configuration {
 
 // Window container
 window {
-    width: 20%;
+    width: 27%;
     border: 1;
     border-color: rgba(235, 219, 161, 0.1);
     border-radius: 5px;

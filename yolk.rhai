@@ -46,11 +46,6 @@ export const eggs = #{
         enabled: os.linux,
         templates: [], // copied as is
     },
-    dunst: #{
-        targets: home + "/.config/dunst",
-        enabled: os.linux,
-        templates: [], // copied as is
-    },
     eww: #{
         targets: home + "/.config/eww",
         enabled: os.linux,

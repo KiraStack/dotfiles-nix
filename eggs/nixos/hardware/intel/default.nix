@@ -1,4 +1,4 @@
-{ pkgs, lib, ... }:
+{ lib, pkgs, ... }:
 {
   services.xserver.videoDrivers = [ "modesetting" ]; # generic kernel-based driver for most GPUs
 

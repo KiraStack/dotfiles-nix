@@ -23,7 +23,7 @@
     htop # process viewer
     lf # file manager
     ripgrep # search tool
-    tree
+    tree # directory tree viewer
     unzip
     wget # http downloader
 

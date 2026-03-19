@@ -18,9 +18,7 @@
         autoUpdateNotification = true;
         useQuickCss = false;
         themeLinks = [ ];
-        enabledThemes = [
-          "tokyo-night.css"
-        ];
+        enabledThemes = [ "tokyo-night.css" ];
         enableReactDevtools = false;
         # frameless = false;
         # transparent = false;

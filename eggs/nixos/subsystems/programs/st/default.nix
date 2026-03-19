@@ -17,7 +17,9 @@
       ];
       # Using a local file
       configFile = pkgs.writeText "config.def.h" (builtins.readFile ./config.h);
-      postPatch = (oldAttrs.postPatch or "") + "\ncp ${configFile} config.def.h";
+      postPatch = (oldAttrs.postPatch or "") + ''
+
+        cp ${configFile} config.def.h'';
     }))
   ];
 }

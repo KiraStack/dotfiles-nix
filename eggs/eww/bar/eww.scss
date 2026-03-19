@@ -9,14 +9,15 @@
 }
 
 /* Tooltip styles */
-.bar > tooltip {
+.bar>tooltip {
     background-color: $base00;
     color: $base05;
     font-size: 1.1rem;
 }
 
 /* Scale styles */
-.bar > scale {
+.bar>scale {
+
     /* Background styles */
     trough {
         background-color: $base02;
@@ -67,8 +68,8 @@
 }
 
 /* Battery icon styles */
-.battery > .icon {
-  font-size: 1.5rem;
+.battery>.icon {
+    font-size: 1.5rem;
 }
 
 .speakers scale trough {

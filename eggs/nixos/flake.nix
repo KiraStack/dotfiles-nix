@@ -36,11 +36,7 @@
           modules = [ ./hosts/${hostname}/configuration.nix ];
           specialArgs = {
             overlays = import ./overlays { inherit inputs hostname; };
-            inherit
-              self
-              inputs
-              hostname
-              ;
+            inherit self inputs hostname;
           };
         };
     in

@@ -17,8 +17,8 @@ let
       })
     ];
   };
-in
 
+in
 pkgs.mkShellNoCC {
   # Programs
   packages = with pkgs; [

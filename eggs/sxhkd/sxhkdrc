@@ -20,7 +20,7 @@ super + v
 
 # Clear clipboard history
 super + shift + v
-  > "$HOME/.cache/clipboard.txt" && command -v herbe >/dev/null && herbe "Clipboard history cleared"
+  (> "$HOME/.cache/clipboard.txt" && command -v herbe >/dev/null && (herbe "Clipboard history cleared" & pid=$!; (sleep 1 && kill "$pid" 2>/dev/null) &))
 
 # Screenshot
 super + p

@@ -22,7 +22,7 @@ while true; do
     # If battery low and not charging, notify once
     if [ "$capacity" -le "$THRESHOLD" ] && [ "$status" != "Charging" ]; then
         if [ "$notified" -eq 0 ]; then
-            herbe "Battery Low" "Battery at ${capacity}%" -u critical -i battery-caution
+            ( herbe "Battery Low" "Battery at ${capacity}%" -u critical -i battery-caution )
             notified=1
         fi
     else

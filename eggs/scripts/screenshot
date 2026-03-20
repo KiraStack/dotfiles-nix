@@ -1,0 +1,41 @@
+#!/bin/sh
+
+# Directory to save screenshots
+DIR="$HOME/Pictures/Screenshots"
+mkdir -p "$DIR"
+
+# Timestamped filename
+TIMESTAMP=$(date +'%Y-%m-%d_%H-%M-%S')
+FILE="$DIR/$TIMESTAMP.png"
+
+# Check for optional argument "select" to capture region
+if [ "$1" = "select" ]; then
+    GEOMETRY=$(slop)
+    if [ -z "$GEOMETRY" ]; then
+        echo "No region selected."
+        exit 1
+    fi
+    maim -g "$GEOMETRY" "$FILE"
+else
+    # Fullscreen capture
+    maim "$FILE"
+fi
+
+# Verify screenshot was created
+if [ ! -f "$FILE" ]; then
+    echo "Failed to take screenshot."
+    exit 1
+fi
+
+# Copy to clipboard
+if command -v xclip >/dev/null 2>&1; then
+    xclip -selection clipboard -t image/png -i "$FILE"
+fi
+
+# Send notification
+if command -v herbe >/dev/null 2>&1; then
+    ( herbe "Screenshot saved: $FILE" )
+fi
+
+# Open screenshot
+# xdg-open "$FILE" >/dev/null 2>&1 &

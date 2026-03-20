@@ -65,7 +65,7 @@
                   $HOME/bin/speakers"
       (label
         :class "icon ${speakers.muted ? 'muted' : ''}"
-        :text "${speakers.muted ? '󰖁' : speakers.volume > 70 ? '󰕾' : speakers.volume > 35 ? '󰖀' : '󰕿'}"
+        :text "${speakers.muted ? '󰖁' : speakers.volume > 70 ? '󰕾' : speakers.volume > 35 ? '' : '󰖁'}"
         :tooltip "${speakers.muted ? 'Muted' : speakers.volume + '%'}"
       )
       ; (scale
@@ -119,7 +119,6 @@
     :halign "center"
     :valign "center"
     (media)
-    ; (date)
   )
 )
 
@@ -135,6 +134,7 @@
     (microphone)
     (speakers)
     (battery)
+    ; (date)
   )
 )
 

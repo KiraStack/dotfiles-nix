@@ -1,7 +1,8 @@
-; Constants
+; Variables
 (defvar debug 0)
+; (defvar eww "eww -c ~/.config/eww/")
 
-; Queries
+; Polls
 (defpoll date :interval "1m" "date +%d/%m")
 (defpoll time :interval "1m" "date +%H:%M")
 
@@ -12,5 +13,6 @@
 (deflisten speakers "scripts/speakers")
 (deflisten workspaces "scripts/workspaces")
 
-; Headers
+; Packages
+(include "license/eww.yuck")
 (include "bar/eww.yuck")

@@ -1,0 +1,12 @@
+(defwindow license
+  :monitor 0
+  :stacking "fg"
+    :geometry (geometry :x "-34px" :y "-34px" :anchor "bottom right")
+  (box
+    :orientation "v"
+    :halign "start"
+    :valign "start"
+    (label :xalign 0 :markup "<big>Copyright</big>")
+    (label :xalign 0 :text "Navigate to 'settings' to activate it.")
+  )
+)

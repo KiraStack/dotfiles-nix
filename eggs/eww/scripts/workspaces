@@ -1,0 +1,34 @@
+#!/bin/sh
+
+print_workspaces() {
+    local buf=""
+    local focused=$(bspc query -D -d focused --names)
+    local occupied=$(bspc query -D -d .occupied --names)
+
+    # Loop through workspaces
+    for d in $(bspc query -D --names); do
+        if [[ "$d" == "$focused" ]]; then
+            symbol=""
+            class="focused"
+        elif [[ $occupied =~ $d ]]; then
+            symbol=""
+            class=""
+        else
+            continue  # Skip non-occupied desktops
+        fi
+
+        # Append desktop to buffer
+        buf+="(eventbox :cursor \"pointer\" (button :class \"$class\" :onclick \"bspc desktop -f $d\" \"$symbol\"))"
+    done
+
+    # Write workspace box
+    echo "(box :spacing 10 :orientation \"h\" :class \"works\" :halign \"center\" :space-evenly \"false\" $buf)"
+}
+
+print_workspaces
+
+# Subscribe to workspace changes
+bspc subscribe desktop node_transfer | while read -r _; do
+    print_workspaces &
+done
+

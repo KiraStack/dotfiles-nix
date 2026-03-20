@@ -1,89 +1,80 @@
-/* Main bar */
+// Main bar
 .bar {
 	background-color: $base00;
 	color: $base05;
-	font-size: 1.1rem;
+	font-size: large;
 	padding: 0 1rem;
 	border-radius: 12px;
 	box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3);
-}
 
-/* Tooltip styles */
-.bar > tooltip {
-	background-color: $base00;
-	color: $base05;
-	font-size: 1.1rem;
-}
+	> tooltip {
+		background-color: $base00;
+		color: $base05;
+	}
 
-/* Scale styles */
-.bar > scale {
-	/* Background styles */
-	trough {
-		background-color: $base02;
-		min-height: 5px;
-		min-width: 100px;
-		border-radius: 10px;
-		margin-left: 10px;
-		margin-right: 20px;
-
-		/* Foreground slider styles */
-		highlight {
-			background-color: $base05;
+	> scale {
+		// Background
+		trough {
+			background-color: $base02;
+			min-height: 5px;
+			min-width: 100px;
 			border-radius: 10px;
+			margin: 0 20px 0 10px;
+
+			// Foreground slider
+			highlight {
+				background-color: $base05;
+				border-radius: 10px;
+			}
+		}
+
+		&.warning trough highlight {
+			background-color: $base10;
+			color: #1a1b26;
+		}
+
+		&.error trough highlight {
+			background-color: $base08;
+			color: #1a1b26;
 		}
 	}
-
-	/* Warning state */
-	.warning trough highlight {
-		background-color: $base10;
-		color: #1a1b26;
-	}
-
-	/* Error state */
-	.error trough highlight {
-		background-color: $base08;
-		color: #1a1b26;
-	}
 }
 
-/* Desktop styles */
+// Desktop styles
 .workspaces {
 	color: $base03;
+	font-size: xx-large;
 
-	/* Active workspace */
 	button.focused {
 		color: $base05;
 	}
 
-	/* Hovered workspace */
 	button:hover {
 		color: $base05;
 	}
 }
 
-/* Icon styles */
+// Icon styles
 .icon {
-	font-size: 2rem;
+	font-size: xx-large;
+
+	&.connected {
+		color: $base05;
+	}
+
+	&.disconnected,
+	&.critical {
+		color: $base03;
+	}
 }
 
-/* Battery icon styles */
+// Battery icon
 .battery > .icon {
-	font-size: 1.5rem;
+	font-size: large;
 }
 
+// Speakers scale trough
 .speakers scale trough {
 	min-height: 10px;
 	min-width: 40px;
-}
-
-/* Icons states */
-.connected,
-.running {
-	color: $base11;
-}
-
-.disconnected,
-.muted,
-.critical {
-	color: $base08;
 }

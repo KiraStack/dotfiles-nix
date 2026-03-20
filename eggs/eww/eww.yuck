@@ -6,11 +6,11 @@
 (defpoll time :interval "1m" "date +%H:%M")
 
 ; Listeners
-(deflisten battery "tasks/battery")
-(deflisten microphone "tasks/microphone")
-(deflisten network "tasks/network")
-(deflisten speakers "tasks/speakers")
-(deflisten workspaces "tasks/workspaces")
+(deflisten battery "scripts/battery")
+(deflisten microphone "scripts/microphone")
+(deflisten network "scripts/network")
+(deflisten speakers "scripts/speakers")
+(deflisten workspaces "scripts/workspaces")
 
 ; Headers
 (include "bar/eww.yuck")

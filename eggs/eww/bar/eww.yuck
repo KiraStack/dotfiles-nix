@@ -6,6 +6,17 @@
   )
 )
 
+; Media widget
+(defwidget media []
+  (box
+    :class "media"
+    (label
+      :tooltip "${date}"
+      :text "${time}"
+    )
+  )
+)
+
 ; Time widget
 (defwidget date []
   (box
@@ -33,7 +44,7 @@
   (box
     :class "microphone"
     (button
-      :class "icon ${microphone == 'true' ? 'running' : 'muted'}"
+      :class "icon ${microphone == 'true' ? 'connected' : 'disconnected'}"
       :onclick "pactl set-source-mute @DEFAULT_SOURCE@ toggle"
       (label :text "${microphone == 'true' ? '󰍬' : '󰍭'}")
     )
@@ -107,7 +118,8 @@
     :orientation "h"
     :halign "center"
     :valign "center"
-    (date)
+    (media)
+    ; (date)
   )
 )
 

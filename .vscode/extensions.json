@@ -1,0 +1,20 @@
+{
+	// Workspace recommendations (updated 2026-03-20)
+	// Format: publisher.name (e.g. vscode.csharp)
+
+	// Approved extensions for users of this workspace.
+	"recommendations": [
+		"ChakornK.vsc-discord-rpc",
+		"eamodio.gitlens",
+		"esbenp.prettier-vscode",
+		"fogio.jetbrains-file-icon-theme",
+		"jnoortheen.nix-ide",
+		"kilocode.Kilo-Code",
+		"ms-vscode-remote.remote-ssh-edit",
+		"ms-vscode.cpptools",
+		"ms-vscode.live-server"
+	],
+
+	// Extensions to avoid for users in this workspace.
+	"unwantedRecommendations": []
+}

@@ -1,10 +1,10 @@
 /* Global styles */
 * {
-    all: unset;
-    font-family: 'JetBrainsMono Nerd Font Mono, monospace';
-    font-weight: bold;
+	all: unset;
+	font-family: "JetBrainsMono Nerd Font Mono, monospace";
+	font-weight: bold;
 }
 
 /* Headers */
-@import 'colors.scss';
-@import 'bar/eww.scss';
+@import "colors.scss";
+@import "bar/eww.scss";

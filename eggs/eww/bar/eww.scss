@@ -1,90 +1,89 @@
 /* Main bar */
 .bar {
-    background-color: $base00;
-    color: $base05;
-    font-size: 1.1rem;
-    padding: 0 1rem;
-    border-radius: 12px;
-    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3);
+	background-color: $base00;
+	color: $base05;
+	font-size: 1.1rem;
+	padding: 0 1rem;
+	border-radius: 12px;
+	box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3);
 }
 
 /* Tooltip styles */
-.bar>tooltip {
-    background-color: $base00;
-    color: $base05;
-    font-size: 1.1rem;
+.bar > tooltip {
+	background-color: $base00;
+	color: $base05;
+	font-size: 1.1rem;
 }
 
 /* Scale styles */
-.bar>scale {
+.bar > scale {
+	/* Background styles */
+	trough {
+		background-color: $base02;
+		min-height: 5px;
+		min-width: 100px;
+		border-radius: 10px;
+		margin-left: 10px;
+		margin-right: 20px;
 
-    /* Background styles */
-    trough {
-        background-color: $base02;
-        min-height: 5px;
-        min-width: 100px;
-        border-radius: 10px;
-        margin-left: 10px;
-        margin-right: 20px;
+		/* Foreground slider styles */
+		highlight {
+			background-color: $base05;
+			border-radius: 10px;
+		}
+	}
 
-        /* Foreground slider styles */
-        highlight {
-            background-color: $base05;
-            border-radius: 10px;
-        }
-    }
+	/* Warning state */
+	.warning trough highlight {
+		background-color: $base10;
+		color: #1a1b26;
+	}
 
-    /* Warning state */
-    .warning trough highlight {
-        background-color: $base10;
-        color: #1a1b26;
-    }
-
-    /* Error state */
-    .error trough highlight {
-        background-color: $base08;
-        color: #1a1b26;
-    }
+	/* Error state */
+	.error trough highlight {
+		background-color: $base08;
+		color: #1a1b26;
+	}
 }
 
 /* Desktop styles */
 .workspaces {
-    color: $base03;
+	color: $base03;
 
-    /* Active workspace */
-    button.focused {
-        color: $base05;
-    }
+	/* Active workspace */
+	button.focused {
+		color: $base05;
+	}
 
-    /* Hovered workspace */
-    button:hover {
-        color: $base05;
-    }
+	/* Hovered workspace */
+	button:hover {
+		color: $base05;
+	}
 }
 
 /* Icon styles */
 .icon {
-    font-size: 2rem;
+	font-size: 2rem;
 }
 
 /* Battery icon styles */
-.battery>.icon {
-    font-size: 1.5rem;
+.battery > .icon {
+	font-size: 1.5rem;
 }
 
 .speakers scale trough {
-    min-height: 10px;
-    min-width: 40px;
+	min-height: 10px;
+	min-width: 40px;
 }
 
 /* Icons states */
 .connected,
 .running {
-    color: $base11;
+	color: $base11;
 }
 
 .disconnected,
 .muted,
 .critical {
-    color: $base08;
+	color: $base08;
 }

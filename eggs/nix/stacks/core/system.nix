@@ -85,12 +85,13 @@ in
     "gl" = "git log --oneline --graph --decorate";
 
     # System
-    "nix-store-ls" = "nix-store -qR";
     "nix-collect" = "sudo nix-collect-garbage -d";
     "nix-optimise" = "nix-store --optimise";
-    "nix-update" = "sudo nix flake update nixpkgs --flake /etc/nixos";
+    "nix-prune" = "rm -rf '$HOME/.cache/'* '$HOME/.local/state/tmp/'* /tmp/*"; # remove temporary and cache files
     "nix-rebuild" = "sudo nixos-rebuild switch --flake /etc/nixos#$(hostname)";
     "nix-rebuild-rollback" = "sudo nixos-rebuild switch --rollback";
+    "nix-store-ls" = "nix-store -qR";
+    "nix-update" = "sudo nix flake update nixpkgs --flake /etc/nixos";
 
     # Templates
     "nix-default" = "nix develop /etc/nixos/templates#default";
@@ -98,6 +99,14 @@ in
     "nix-nix" = "nix develop /etc/nixos/templates#nix";
     "nix-python" = "nix develop /etc/nixos/templates#python";
     "nix-rust" = "nix develop /etc/nixos/templates#rust";
+
+    # Safe file cleanup
+    "trash" = ''
+      mkdir -p "$HOME/.local/share/Trash/files"
+      for f in "$@"; do
+        mv "$f" "$HOME/.local/share/Trash/files/"
+      done
+    '';
   };
 
   # Package management

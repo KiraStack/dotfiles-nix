@@ -42,7 +42,7 @@ xsetroot -cursor_name left_ptr
 xset m 0 0
 
 # Set the background
-hsetroot -fill "$HOME/.config/bspwm/imgs/wallpaper.png" &
+hsetroot -fill "$HOME/.config/bspwm/imgs/background.png" &
 
 # Autostart widgets
 pkill eww >/dev/null 2>&1

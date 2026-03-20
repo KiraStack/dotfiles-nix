@@ -24,8 +24,8 @@ path=$(find "$source" -type f -name "$img" | head -n 1)
 
 # Replace current file
 mkdir -p "$dest"
-cp -f "$path" "$dest/wallpaper.png"
+cp -f "$path" "$dest/background.png"
 
 # Change background using the copied file
-hsetroot -fill "$dest/wallpaper.png"
+hsetroot -fill "$dest/background.png"
 

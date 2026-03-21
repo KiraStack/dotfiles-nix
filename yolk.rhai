@@ -1,26 +1,34 @@
-let home = io::env("HOME", "");
-let localData = io::env("LOCALAPPDATA", "");
+// Environment paths
+const home = io::env("HOME", "");
+const localData = io::env("LOCALAPPDATA", "");
 
-// Platform constants
-let system = #{
-    linux: SYSTEM.platform == "Linux",
-    windows: SYSTEM.platform == "Windows",
-    darwin: SYSTEM.platform == "Darwin"
+// Systems
+const linux = SYSTEM.platform == "Linux";
+const windows = SYSTEM.platform == "Windows";
+const darwin = SYSTEM.platform == "Darwin";
+
+// Path join function
+fn join(base, sub) {
+    if base.ends_with("/") {
+        return base + sub;
+    } else {
+        return base + "/" + sub;
+    }
 };
 
-// Function to merge into home
-fn home_merge() {
-    #{ targets: io::env("HOME", ""), enabled: true, strategy: "merge", templates: [] /* copied as is */ }
-}
+// Config directory
+const configDir = join(home, ".config");
 
-// Eggs
+// Packages
 export const eggs = #{
-    bspwm: #{ targets: home + "/.config/bspwm", enabled: system.linux, templates: [] },
-    eww: #{ targets: home + "/.config/eww", enabled: system.linux, templates: [] },
-    nix: #{ targets: "/etc/nixos", enabled: system.linux, templates: [] },
-    picom: #{ targets: home + "/.config/picom", enabled: system.linux, templates: [] },
-    rofi: #{ targets: home + "/.config/rofi", enabled: system.linux, templates: [] },
-    scripts: #{ targets: home + "/.local/bin", enabled: system.linux, templates: [] },
-    sxhkd: #{ targets: home + "/.config/sxhkd", enabled: system.linux, templates: [] },
-    xinitrc: home_merge()
+    bspwm: #{ targets: join(configDir, "bspwm"), enabled: linux, templates: [] },
+    eww: #{ targets: join(configDir, "eww"), enabled: linux, templates: [] },
+    home: #{ targets: home, enabled: linux, strategy: "merge", templates: [] },
+    nix: #{ targets: "/etc/nixos", enabled: linux, strategy: "put", templates: [] },
+    picom: #{ targets: join(configDir, "picom"), enabled: linux, templates: [] },
+    rofi: #{ targets: join(configDir, "rofi"), enabled: linux, templates: [] },
+    rofimoji: #{ targets: join(home, ".local/share/rofimoji"), enabled: linux, templates: [] },
+    scripts: #{ targets: join(home, ".local/bin"), enabled: linux, templates: [] },
+    icons: #{ targets: join(home, ".icons"), enabled: linux },
+    sxhkd: #{ targets: join(configDir, "sxhkd"), enabled: linux, templates: [] },
 };

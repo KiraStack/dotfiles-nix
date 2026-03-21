@@ -1,10 +1,20 @@
 { hostname, ... }:
 let
   inherit (import ../../hosts/${hostname}/variables.nix)
-    timezone locale # system locale
-    desktop terminal editor browser videoDriver # GPU driver
-    kbdLayout kbdVariant consoleKeymap bluetoothSupport;
-in {
+    timezone
+    locale # system locale
+    desktop
+    terminal
+    editor
+    browser
+    videoDriver # GPU driver
+    kbdLayout
+    kbdVariant
+    consoleKeymap
+    bluetoothSupport
+    ;
+in
+{
   # X11 configuration
   services.xserver = {
     enable = true;
@@ -54,10 +64,6 @@ in {
       "${PNPM_BIN}"
       "$HOME/.emacs.d/bin"
     ];
-
-    # Cursors
-    XCURSOR_THEME = "Bibata-Modern-Ice";
-    XCURSOR_SIZE = "24";
   };
 
   # Shell aliases
@@ -77,8 +83,7 @@ in {
     # System
     "nix-collect" = "sudo nix-collect-garbage -d";
     "nix-optimise" = "nix-store --optimise";
-    "nix-prune" =
-      "rm -rf '$HOME/.cache/'* '$HOME/.local/state/tmp/'* /tmp/*"; # remove temporary and cache files
+    "nix-prune" = "rm -rf '$HOME/.cache/'* '$HOME/.local/state/tmp/'* /tmp/*"; # remove temporary and cache files
     "nix-rebuild" = "sudo nixos-rebuild switch --flake /etc/nixos#$(hostname)";
     "nix-rebuild-rollback" = "sudo nixos-rebuild switch --rollback";
     "nix-store-ls" = "nix-store -qR";

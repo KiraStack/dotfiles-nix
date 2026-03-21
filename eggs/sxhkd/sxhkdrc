@@ -14,9 +14,13 @@ super + n
 super + space
   rofi -show drun
 
-# Open character picker
+# Open emoji picker
 super + period
-  rofimoji
+  rofimoji --files emoji --selector rofi --action copy
+
+# Open character picker
+super + comma
+  rofimoji --files symbols --selector rofi --action copy
 
 # Open clipboard menu
 super + v

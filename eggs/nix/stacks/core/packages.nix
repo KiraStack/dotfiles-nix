@@ -19,12 +19,13 @@
     # System
     curl # http client
     # file-roller # archive manager
+    gnutar # archive extraction and creation (tarballs, .tar.gz, etc.)
     herbe # notifications
     htop # process viewer
     lf # file manager
     ripgrep # search tool
     tree # directory tree viewer
-    unzip
+    unzip # extract .zip archives
     wget # http downloader
 
     # Development

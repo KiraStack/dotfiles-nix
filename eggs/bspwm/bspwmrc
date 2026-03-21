@@ -35,11 +35,10 @@ rm -fr $HOME/.cache/eww/
 rm -fr $HOME/.cache/fish/
 rm -fr $HOME/.cache/fontconfig/
 
-# Set default pointer
-xsetroot -cursor_name left_ptr
-
-# Disable mouse acceleration
-xset m 0 0
+# Cursor options
+xset m 0 0 # disable mouse acceleration
+xrdb ~/.Xresources
+xsetroot -cursor_name left_ptr &
 
 # Set the background
 hsetroot -fill "$HOME/.config/bspwm/imgs/background.png" &

@@ -22,7 +22,7 @@ print_workspaces() {
     done
 
     # Write workspace box
-    echo "(box :spacing 10 :orientation \"h\" :class \"works\" :halign \"center\" :space-evenly \"false\" $buf)"
+    echo "(box :spacing 5 :orientation \"h\" :class \"works\" :halign \"center\" :space-evenly \"false\" $buf)"
 }
 
 print_workspaces

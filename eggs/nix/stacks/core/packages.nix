@@ -1,8 +1,10 @@
-{ pkgs, lib, ... }: {
+{ pkgs, lib, ... }:
+{
   # NixOS package configurations
   nixpkgs.config = {
     allowUnfree = true;
-    nixpkgs.config.allowUnfreePredicate = pkg:
+    nixpkgs.config.allowUnfreePredicate =
+      pkg:
       builtins.elem (lib.getName pkg) [
         "steam"
         "steam-original"
@@ -44,6 +46,7 @@
     eww # widget system
     hsetroot # wallpaper setter
     rofi # application launcher
+    rofimoji # character picker
     xdg-desktop-portal # portal backend
     xdg-desktop-portal-gnome
     xdg-utils # desktop integration tools

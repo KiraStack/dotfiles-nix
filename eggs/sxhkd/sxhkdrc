@@ -8,13 +8,17 @@ super + b
 
 # Open file manager
 super + n
-    $TERMINAL -e lf
+  $TERMINAL -e lf
 
-# Program Launcher
+# Oepn application launcher
 super + space
   rofi -show drun
 
-# Clipboard menu via rofi (X11)
+# Open character picker
+super + period
+  rofimoji
+
+# Open clipboard menu
 super + v
   tac "$HOME/.cache/clipboard.txt" 2>/dev/null | awk '!seen[$0]++' | rofi -dmenu -i -p "Clipboard" | xclip -selection clipboards
 

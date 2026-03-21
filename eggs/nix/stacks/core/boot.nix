@@ -1,9 +1,6 @@
-{ ... }:
-{
+{ ... }: {
   boot = {
-    tmp = {
-      cleanOnBoot = true;
-    };
+    tmp = { cleanOnBoot = true; };
     loader = {
       systemd-boot = {
         enable = true;

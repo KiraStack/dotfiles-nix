@@ -12,12 +12,13 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     nixvim = {
-      url = "github:nix-community/nixvim"; # "github:nix-community/nixvim/nixos-25.11";
+      url =
+        "github:nix-community/nixvim"; # "github:nix-community/nixvim/nixos-25.11";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    nixcord.url = "github:FlameFlag/nixcord";
   };
-  outputs =
-    { self, nixpkgs, ... }@inputs:
+  outputs = { self, nixpkgs, ... }@inputs:
     let
       # Systems this flake can generate configs for
       systems = [
@@ -29,8 +30,7 @@
 
       # Generate system-specific configurations
       forAllSystems = nixpkgs.lib.genAttrs systems;
-      mkHost =
-        hostname:
+      mkHost = hostname:
         nixpkgs.lib.nixosSystem {
           system = forAllSystems (system: system);
           modules = [ ./hosts/${hostname}/configuration.nix ];
@@ -39,12 +39,10 @@
             inherit self inputs hostname;
           };
         };
-    in
-    {
+    in {
       templates = import ./templates;
-      formatter = forAllSystems (system: nixpkgs.legacyPackages.${system}.nixfmt-tree);
-      nixosConfigurations = {
-        archie = mkHost "archie";
-      };
+      formatter =
+        forAllSystems (system: nixpkgs.legacyPackages.${system}.nixfmt-tree);
+      nixosConfigurations = { archie = mkHost "archie"; };
     };
 }

@@ -1,8 +1,3 @@
-{ pkgs, ... }:
-{
-  environment.systemPackages = [
-    pkgs.libc
-    pkgs.llvmPackages.lldb
-    pkgs.nixfmt
-  ];
+{ pkgs, ... }: {
+  environment.systemPackages = [ pkgs.libc pkgs.llvmPackages.lldb pkgs.nixfmt ];
 }

@@ -42,6 +42,47 @@ $base15: #9a7fd1;
 	font-weight: bold;
 }
 
+// Tips
+tooltip {
+	background-color: $base00;
+	color: $base05;
+	font-size: medium;
+}
+
+// Slider
+scale {
+	// Background
+	trough {
+		background-color: $base02;
+		min-height: 5px;
+		min-width: 50px;
+		border-radius: 10px;
+		// margin: 0 0px 0 10px;
+
+		// Foreground slider
+		highlight {
+			background-color: $base05;
+			border-radius: 10px;
+		}
+	}
+
+	&.hidden trough {
+		min-width: 0;
+		min-height: 0;
+		margin: 0;
+	}
+
+	&.warning trough highlight {
+		background-color: $base10;
+		color: #1a1b26;
+	}
+
+	&.error trough highlight {
+		background-color: $base08;
+		color: #1a1b26;
+	}
+}
+
 // Packages
 @import "license/eww.scss";
 @import "bar/eww.scss";

@@ -6,17 +6,6 @@
   )
 )
 
-; Media widget
-(defwidget media []
-  (box
-    :class "media"
-    (label
-      :tooltip "${date}"
-      :text "${time}"
-    )
-  )
-)
-
 ; Time widget
 (defwidget date []
   (box
@@ -55,99 +44,49 @@
 (defwidget speakers []
   (eventbox
     :class "speakers"
-    (eventbox
-      :onclick "pactl set-sink-mute @DEFAULT_SINK@ toggle && $HOME/bin/speakers"
-      :onscroll "v=$(pactl get-sink-volume @DEFAULT_SINK@ | awk 'NR==1{print $5}' | tr -d '%'); step=5;
-                  case \"{}\" in
-                    up) [ $((100-v)) -lt 5 ] && step=$((100-v)); [ $step -gt 0 ] && pactl set-sink-volume @DEFAULT_SINK@ $((v+step))% ;;
-                    down) [ $v -lt 5 ] && step=$v; [ $step -gt 0 ] && pactl set-sink-volume @DEFAULT_SINK@ $((v-step))% ;;
-                  esac;
-                  $HOME/bin/speakers"
+    ; :onclick "pactl set-sink-mute @DEFAULT_SINK@ toggle"
+    :onscroll "pactl set-sink-volume @DEFAULT_SINK@ {}%"
+    :onhover "${eww} update speakers_popup=true"
+    :onhoverlost "${eww} update speakers_popup=false"
+    (box
       (label
-        :class "icon ${speakers.muted ? 'muted' : ''}"
-        :text "${speakers.muted ? '󰖁' : speakers.volume > 70 ? '󰕾' : speakers.volume > 35 ? '' : '󰖁'}"
-        :tooltip "${speakers.muted ? 'Muted' : speakers.volume + '%'}"
+        :class "icon ${speakers.muted ? 'disconnected' : ''}"
+        :text "${speakers.muted || speakers.volume == 0 ? '󰖁' : speakers.volume > 50 ? '󰕾' : '󰖀'}"
       )
-      ; (scale
-      ;   :min 0
-      ;   :max 100
-      ;   :value "${speakers.volume}"
-      ;   :onchange "pactl set-sink-volume @DEFAULT_SINK@ {}%"
-      ; )
+      (scale
+        :class "hidden" ; :class "${speakers_popup ? '' : 'hidden'}"
+        :value volume
+        :tooltip "${volume}%"
+        :max 100
+        :min 0
+      )
     )
   )
 )
 
-; Battery capacity widget
+; Power widget
 (defwidget battery []
   (box
     :class "battery"
     (label
-      :class "icon ${EWW_BATTERY["BAT0"].capacity < 20 ? 'critical' : ''}"
+      :class "icon"
       :text "${EWW_BATTERY["BAT0"].capacity > 95 ? '󰁹'
-      : EWW_BATTERY["BAT0"].capacity > 90 ? '󰂂'
-      : EWW_BATTERY["BAT0"].capacity > 80 ? '󰂁'
-      : EWW_BATTERY["BAT0"].capacity > 70 ? '󰂀'
-      : EWW_BATTERY["BAT0"].capacity > 60 ? '󰁿'
-      : EWW_BATTERY["BAT0"].capacity > 50 ? '󰁾'
-      : EWW_BATTERY["BAT0"].capacity > 40 ? '󰁽'
-      : EWW_BATTERY["BAT0"].capacity > 30 ? '󰁼'
-      : EWW_BATTERY["BAT0"].capacity > 20 ? '󰁻'
-      : EWW_BATTERY["BAT0"].capacity > 10 ? '󰁺'
-      : '󰂃'}"
+        : EWW_BATTERY["BAT0"].capacity > 90 ? '󰂂'
+        : EWW_BATTERY["BAT0"].capacity > 80 ? '󰂁'
+        : EWW_BATTERY["BAT0"].capacity > 70 ? '󰂀'
+        : EWW_BATTERY["BAT0"].capacity > 60 ? '󰁿'
+        : EWW_BATTERY["BAT0"].capacity > 50 ? '󰁾'
+        : EWW_BATTERY["BAT0"].capacity > 40 ? '󰁽'
+        : EWW_BATTERY["BAT0"].capacity > 30 ? '󰁼'
+        : EWW_BATTERY["BAT0"].capacity > 20 ? '󰁻'
+        : EWW_BATTERY["BAT0"].capacity > 10 ? '󰁺'
+        : '󰂃'}"
       :tooltip "${EWW_BATTERY["BAT0"].capacity}% — ${EWW_BATTERY["BAT0"].status}"
     )
   )
 )
 
-; Left bar widget container
-(defwidget left []
-  (box
-    :class "left"
-    :orientation "h"
-    :halign "start"
-    :valign "center"
-    (workspaces)
-  )
-)
-
-; Centre bar widget container
-(defwidget center []
-  (box
-    :class "center"
-    :orientation "h"
-    :halign "center"
-    :valign "center"
-    (media)
-  )
-)
-
-; Right bar widget container
-(defwidget right []
-  (box
-    :class "right"
-    :orientation "h"
-    :halign "end"
-    :valign "center"
-    :spacing 10
-    (network)
-    (microphone)
-    (speakers)
-    (battery)
-    ; (date)
-  )
-)
-
-; Main bar widget
-(defwidget bar []
-  (box
-    (left)
-    (center)
-    (right)
-  )
-)
-
-; Bar window
+; Main bar window
 (defwindow bar
   :monitor 0
   :windowtype "dock"
@@ -155,10 +94,31 @@
     (geometry
       :x "0px"
       :y "8px"
-      :width "98%"
+      :width "98.5%"
       :height "40px"
       :anchor "top center"
     )
   :reserve (struts :distance "40px" :side "top")
-  (bar)
+  :stacking "bg" ; behind windows
+  (box
+    (box
+      :halign "start"
+      :valign "center"
+      (workspaces)
+    )
+    (box
+      :halign "center"
+      :valign "center"
+      (date)
+    )
+    (box
+      :halign "end"
+      :valign "center"
+      (network)
+      (microphone)
+      (speakers)
+      (battery)
+      ; (date)
+    )
+  )
 )

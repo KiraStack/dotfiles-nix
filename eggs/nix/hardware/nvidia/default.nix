@@ -1,10 +1,4 @@
-{
-  lib,
-  pkgs,
-  config,
-  ...
-}:
-{
+{ lib, pkgs, config, ... }: {
   services.xserver.videoDrivers = [ "nouveau" ]; # use open-source NVIDIA driver
 
   # Machine configurations
@@ -30,8 +24,7 @@
   # NixOS package configurations
   nixpkgs.config = {
     nvidia.acceptLicense = true;
-    allowUnfreePredicate =
-      pkg:
+    allowUnfreePredicate = pkg:
       builtins.elem (lib.getName pkg) [
         "cudatoolkit" # CUDA toolkit package
         "nvidia-persistenced" # NVIDIA persistence daemon package

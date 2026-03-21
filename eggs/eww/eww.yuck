@@ -1,10 +1,12 @@
 ; Variables
 (defvar debug 0)
-; (defvar eww "eww -c ~/.config/eww/")
+(defvar eww "eww -c ~/.config/eww/")
+(defvar speakers_popup false)
 
 ; Polls
 (defpoll date :interval "1m" "date +%d/%m")
 (defpoll time :interval "1m" "date +%H:%M")
+(defpoll volume :interval "1s" "pactl get-sink-volume @DEFAULT_SINK@ | awk 'NR==1{print $5}' | tr -d '%'")
 
 ; Listeners
 (deflisten battery "scripts/battery")

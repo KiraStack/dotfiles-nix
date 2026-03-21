@@ -1,27 +1,9 @@
-{
-  inputs,
-  hostname,
-  pkgs,
-  ...
-}:
+{ inputs, hostname, pkgs, ... }:
 let
   inherit (import ../../hosts/${hostname}/variables.nix)
-    timezone
-    locale
-    desktop
-    terminal
-    editor
-    browser
-    shell
-    videoDriver
-    clock24h
-    kbdLayout
-    kbdVariant
-    consoleKeymap
-    bluetoothSupport
-    ;
-in
-{
+    bluetoothSupport browser clock24h consoleKeymap desktop editor kbdLayout
+    kbdVariant locale shell terminal timezone username videoDriver;
+in {
   # Load home-manager
   imports = [ inputs.home-manager.nixosModules.home-manager ];
 
@@ -36,10 +18,10 @@ in
     backupFileExtension = "backup";
 
     # User session management
-    users.${hostname} = {
+    users.${username} = {
       home = {
-        username = "${hostname}";
-        homeDirectory = "/home/${hostname}";
+        username = "${username}";
+        homeDirectory = "/home/${username}";
         stateVersion = "26.05"; # nixOS version reference for upgrades.
         # sessionVariables = rec {};
       };
@@ -65,7 +47,7 @@ in
   # Local user accounts
   users = {
     mutableUsers = true;
-    users.${hostname} = {
+    users.${username} = {
       isNormalUser = true;
       description = "Personal user account";
       extraGroups = [
@@ -91,5 +73,5 @@ in
   };
 
   # Nix defaults
-  nix.settings.allowed-users = [ "${hostname}" ];
+  nix.settings.allowed-users = [ "${username}" ];
 }

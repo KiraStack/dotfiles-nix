@@ -3,9 +3,7 @@
 {
   services = {
     # SSD trim
-    fstrim = {
-      enable = true;
-    };
+    fstrim = { enable = true; };
 
     # SSH server
     openssh = {
@@ -22,14 +20,10 @@
     };
 
     # Bluetooth manager
-    blueman = {
-      enable = true;
-    };
+    blueman = { enable = true; };
 
     # Display manager
-    displayManager.ly = {
-      enable = true;
-    };
+    displayManager.ly = { enable = true; };
 
     # Audio
     pipewire.enable = false; # disable conflicting 'pkg'

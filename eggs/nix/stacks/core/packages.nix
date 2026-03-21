@@ -1,10 +1,8 @@
-{ pkgs, lib, ... }:
-{
+{ pkgs, lib, ... }: {
   # NixOS package configurations
   nixpkgs.config = {
     allowUnfree = true;
-    nixpkgs.config.allowUnfreePredicate =
-      pkg:
+    nixpkgs.config.allowUnfreePredicate = pkg:
       builtins.elem (lib.getName pkg) [
         "steam"
         "steam-original"

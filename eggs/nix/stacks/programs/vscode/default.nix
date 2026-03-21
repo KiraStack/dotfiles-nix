@@ -32,13 +32,11 @@ let
     version = "1.1.0";
     sha256 = "faUKUsBS/Jf8QNvs0c/FWij4wqh65hb8XYOdvf1nkWY=";
   };
-in
-{
+in {
   programs.vscode = {
     enable = true;
     package = pkgs.vscodium;
-    extensions =
-      with pkgs.vscode-extensions;
+    extensions = with pkgs.vscode-extensions;
       [
         eamodio.gitlens # git tracking
         esbenp.prettier-vscode # code formatting
@@ -46,8 +44,7 @@ in
         kilocode.kilo-code # ai assistant
         ms-vscode.cpptools
         ms-vscode.live-server # local server
-      ]
-      ++ pkgs.vscode-utils.extensionsFromVscodeMarketplace [
+      ] ++ pkgs.vscode-utils.extensionsFromVscodeMarketplace [
         discord
         jetbrains
       ];

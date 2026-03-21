@@ -1,6 +1,6 @@
-{ ... }:
-{
-  services.gnome.gnome-keyring.enable = true; # manage passwords and keys (gnome)
+{ ... }: {
+  services.gnome.gnome-keyring.enable =
+    true; # manage passwords and keys (gnome)
   security = {
     rtkit.enable = true; # real-time scheduling support
     protectKernelImage = true;

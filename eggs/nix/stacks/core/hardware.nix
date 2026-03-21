@@ -1,8 +1,6 @@
 { hostname, ... }:
-let
-  inherit (import ../../hosts/${hostname}/variables.nix) bluetoothSupport;
-in
-{
+let inherit (import ../../hosts/${hostname}/variables.nix) bluetoothSupport;
+in {
   hardware = {
     bluetooth = {
       enable = bluetoothSupport;

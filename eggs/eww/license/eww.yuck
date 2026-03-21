@@ -6,7 +6,7 @@
     :orientation "v"
     :halign "start"
     :valign "start"
-    (label :xalign 0 :markup "<big>Copyright</big>")
+    (label :xalign 0 :markup "<big>Activate Linux</big>")
     (label :xalign 0 :text "Navigate to 'settings' to activate it.")
   )
 )

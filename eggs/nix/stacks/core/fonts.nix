@@ -1,5 +1,4 @@
-{ pkgs, ... }:
-{
+{ pkgs, ... }: {
   fonts = {
     fontDir.enable = true; # enable user font directory
     packages = with pkgs; [
@@ -11,19 +10,10 @@
       enable = true;
       antialias = true; # smooth fonts
       defaultFonts = {
-        monospace = [
-          "JetBrainsMono Nerd Font"
-          "Noto Mono"
-          "DejaVu Sans Mono"
-        ];
-        sansSerif = [
-          "Noto Sans"
-          "DejaVu Sans"
-        ];
-        serif = [
-          "Noto Serif"
-          "DejaVu Serif"
-        ];
+        monospace =
+          [ "JetBrainsMono Nerd Font" "Noto Mono" "DejaVu Sans Mono" ];
+        sansSerif = [ "Noto Sans" "DejaVu Sans" ];
+        serif = [ "Noto Serif" "DejaVu Serif" ];
         emoji = [ "Noto Color Emoji" ];
       };
     };

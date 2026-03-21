@@ -1,5 +1,4 @@
-{ ... }:
-{
+{ ... }: {
   # Use neovim
   programs.neovim = {
     enable = true;

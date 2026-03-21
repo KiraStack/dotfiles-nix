@@ -1,9 +1,7 @@
 { nixpkgs, system }:
 
-let
-  pkgs = import nixpkgs { inherit system; };
-in
-pkgs.mkShell {
+let pkgs = import nixpkgs { inherit system; };
+in pkgs.mkShell {
   packages = with pkgs; [
     cargo-audit # security audit for dependencies
     clippy # linter for Rust

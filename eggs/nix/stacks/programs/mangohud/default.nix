@@ -1,25 +1,15 @@
-{ ... }:
-{
+{ ... }: {
   home-manager.sharedModules = [
     (args: {
       programs.mangohud = {
         enable = true;
         enableSessionWide = true;
-        settingsPerApplication = {
-          mpv = {
-            no_display = true;
-          };
-        };
+        settingsPerApplication = { mpv = { no_display = true; }; };
         settings = {
           no_display = true; # Hide hud by default (unhide with `F12`)
-          fps_limit = [
-            0
-            60
-            144
-            165
-            240
-          ];
-          fps_limit_method = "late"; # late = low input lag but less smooth, early = more smooth
+          fps_limit = [ 0 60 144 165 240 ];
+          fps_limit_method =
+            "late"; # late = low input lag but less smooth, early = more smooth
           vsync = 2; # https://github.com/flightlessmango/MangoHud#vsync
           gl_vsync = 1; # https://github.com/flightlessmango/MangoHud#vsync
           # testing for gl_vsync: 1.045

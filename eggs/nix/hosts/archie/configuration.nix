@@ -1,15 +1,8 @@
 { inputs, ... }:
 let
   inherit (import ./variables.nix)
-    desktop
-    videoDriver
-    browser
-    editor
-    shell
-    terminal
-    ;
-in
-{
+    desktop videoDriver browser editor shell terminal;
+in {
   imports = [
     # Hardware
     ./hardware-configuration.nix

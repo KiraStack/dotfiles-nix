@@ -1,13 +1,16 @@
-{ ... }: {
+{ ... }:
+{
   boot = {
-    tmp = { cleanOnBoot = true; };
+    tmp = {
+      cleanOnBoot = true;
+    };
     loader = {
       systemd-boot = {
         enable = true;
         editor = false;
       };
       efi.canTouchEfiVariables = true;
-      timeout = null; # keep bootloader until selection
+      timeout = 5; # old: null (to keep bootloader until selection)
     };
   };
 }

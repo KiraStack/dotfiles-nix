@@ -21,14 +21,14 @@ const configDir = join(home, ".config");
 
 // Packages
 export const eggs = #{
-    bspwm: #{ targets: join(configDir, "bspwm"), enabled: linux, templates: [] },
-    eww: #{ targets: join(configDir, "eww"), enabled: linux, templates: [] },
-    home: #{ targets: home, enabled: linux, strategy: "merge", templates: [] },
-    nix: #{ targets: "/etc/nixos", enabled: linux, strategy: "put", templates: [] },
-    picom: #{ targets: join(configDir, "picom"), enabled: linux, templates: [] },
-    rofi: #{ targets: join(configDir, "rofi"), enabled: linux, templates: [] },
-    rofimoji: #{ targets: join(home, ".local/share/rofimoji"), enabled: linux, templates: [] },
-    scripts: #{ targets: join(home, ".local/bin"), enabled: linux, templates: [] },
-    icons: #{ targets: join(home, ".icons"), enabled: linux },
-    sxhkd: #{ targets: join(configDir, "sxhkd"), enabled: linux, templates: [] },
+    bspwm: #{ enabled: linux, targets: join(configDir, "bspwm") },
+    eww: #{ enabled: linux, targets: join(configDir, "eww") },
+    home: #{ enabled: linux, strategy: "merge", targets: home },
+    nix: #{ enabled: linux, strategy: "put", targets: "/etc/nixos" },
+    picom: #{ enabled: linux, targets: join(configDir, "picom") },
+    rofi: #{ enabled: linux, targets: join(configDir, "rofi") },
+    rofimoji: #{ enabled: linux, targets: join(home, ".local/share/rofimoji") },
+    scripts: #{ enabled: linux, targets: join(home, ".local/bin") },
+    icons: #{ enabled: linux, targets: join(home, ".icons") },
+    sxhkd: #{ enabled: linux, targets: join(configDir, "sxhkd") },
 };
